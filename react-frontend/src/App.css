@@ -1,0 +1,460 @@
+/* Centered, tall app column */
+.app {
+  height: 100vh;
+  width: min(100%, var(--column-width));
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  background: var(--bg);
+  box-shadow: 0 0 40px var(--shadow);
+  border-radius: 0;
+}
+
+/* Top bar with centered title */
+.topbar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 2px solid var(--line);
+  position: sticky;
+  top: 0;
+  background: var(--bg-secondary);
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+.brand {
+  grid-column: 2;
+  font-weight: 600;
+  font-size: var(--heading-font);
+  color: var(--text);
+  letter-spacing: -0.025em;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.brand .author {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--muted);
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.actions { 
+  grid-column: 3; 
+  justify-self: end; 
+  display: flex;
+  gap: 8px;
+}
+
+.actions button {
+  border: 2px solid var(--accent);
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  padding: 10px 18px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px var(--shadow);
+  position: relative;
+  z-index: 1;
+}
+
+.actions button:hover {
+  background: var(--accent);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px var(--shadow-hover);
+}
+
+.actions button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px var(--shadow);
+}
+
+/* PDF Upload Section */
+.upload-section {
+  padding: 24px;
+  border-bottom: 2px solid var(--line);
+  background: var(--bg-secondary);
+  position: relative;
+  margin: 0 16px;
+  border-radius: 12px 12px 0 0;
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  border-top: 1px solid var(--line);
+}
+
+.upload-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light));
+  border-radius: 0 0 3px 3px;
+}
+
+.upload-section h3 {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.upload-section h3::before {
+  content: "📄";
+  font-size: 20px;
+  filter: grayscale(0.3);
+}
+
+.upload-form {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: var(--bg-secondary);
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  box-shadow: 0 2px 8px var(--shadow);
+  transition: box-shadow 0.2s ease;
+}
+
+.upload-form:hover {
+  box-shadow: 0 4px 12px var(--shadow-hover);
+}
+
+.upload-button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px var(--shadow);
+  width: 100%;
+}
+
+.upload-button:hover:not(:disabled) {
+  background: #3182ce;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px var(--shadow-hover);
+}
+
+.upload-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.upload-status {
+  margin-top: 16px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.upload-status.success {
+  background: var(--success-light);
+  color: var(--success);
+  border-color: var(--success);
+  box-shadow: 0 2px 4px rgba(72, 187, 120, 0.1);
+}
+
+.upload-status.error {
+  background: #fed7d7;
+  color: #e53e3e;
+  border-color: #feb2b2;
+  box-shadow: 0 2px 4px rgba(229, 62, 62, 0.1);
+}
+
+.upload-status:not(.success):not(.error) {
+  background: var(--bg);
+  color: var(--muted);
+  border-color: var(--line);
+}
+
+/* Chat stream */
+.chat {
+  padding: 24px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: var(--bg);
+  margin: 0 16px;
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  min-height: 400px;
+}
+
+/* Bubbles */
+.bubble {
+  max-width: 75%;
+  padding: 16px 20px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--bg-secondary);
+  white-space: pre-wrap;
+  font-size: var(--bubble-font);
+  line-height: 1.5;
+  box-shadow: 0 1px 3px var(--shadow);
+  transition: box-shadow 0.2s ease;
+}
+
+.bubble:hover {
+  box-shadow: 0 2px 6px var(--shadow-hover);
+}
+
+.user { 
+  align-self: flex-end; 
+  background: var(--accent); 
+  color: white;
+  border-color: var(--accent);
+}
+
+.bot { 
+  align-self: flex-start;  
+  background: var(--bg-secondary); 
+  color: var(--text);
+}
+
+/* Tools under bot messages */
+.bubble .tools {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: var(--muted);
+}
+
+.bubble .tools button {
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 10px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+/* Collapsible sources */
+details.sources { 
+  margin-top: 6px; 
+}
+
+details.sources summary { 
+  cursor: pointer; 
+  color: #374151; 
+}
+
+/* Composer */
+.composer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  padding: 20px 24px;
+  border-top: 2px solid var(--line);
+  background: var(--bg-secondary);
+  margin: 0 16px;
+  border-radius: 0 0 12px 12px;
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 -2px 8px var(--shadow);
+}
+
+.prompt-input {
+  resize: none;
+  min-height: 52px;
+  max-height: 200px;
+  padding: 16px 20px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  outline: none;
+  font-size: var(--bubble-font);
+  background: var(--bg-secondary);
+  color: var(--text);
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px var(--shadow);
+  font-family: inherit;
+}
+
+.prompt-input:focus { 
+  border-color: var(--accent); 
+  box-shadow: 0 0 0 3px var(--accent-light);
+}
+
+.prompt-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.send-button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px var(--shadow);
+  min-width: 60px;
+  height: 40px;
+}
+
+.send-button:hover:not(:disabled) {
+  background: #3182ce;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px var(--shadow-hover);
+}
+
+.send-button:disabled { 
+  opacity: .6; 
+  cursor: not-allowed; 
+  transform: none;
+}
+
+/* Subtle typing animation for "…thinking" */
+.typing::after {
+  content: "";
+  display: inline-block;
+  width: 1em;
+  animation: dots 1s steps(3, end) infinite;
+}
+
+@keyframes dots {
+  0% { content: ""; } 
+  33% { content: "."; } 
+  66% { content: ".."; } 
+  100% { content: "..."; }
+}
+
+.error { 
+  color: #e53e3e; 
+  padding: 16px 24px; 
+  border-top: 1px solid var(--line); 
+  background: #fed7d7;
+  font-weight: 500;
+}
+
+.sources {
+  display: none !important;
+  margin-top: 12px; 
+  padding: 16px 20px; 
+  border-left: 4px solid var(--accent); 
+  color: var(--text-secondary);
+  background: var(--bg);
+  border-radius: 0 12px 12px 0;
+  box-shadow: 0 1px 3px var(--shadow);
+}
+
+.sources li { 
+  margin: 8px 0; 
+  padding: 6px 0;
+  line-height: 1.5;
+}
+
+/* Mobile tweaks */
+@media (max-width: 768px) {
+  :root { 
+    --column-width: 100%; 
+    --base-font: 15px; 
+    --bubble-font: 15px; 
+    --heading-font: 20px; 
+  }
+  
+  .app {
+    height: 100vh;
+    border-radius: 0;
+  }
+  
+  .topbar {
+    padding: 16px 20px;
+  }
+  
+  .upload-section {
+    padding: 20px;
+    margin: 0 12px;
+  }
+  
+  .chat {
+    padding: 20px 16px;
+    margin: 0 12px;
+  }
+  
+  .bubble { 
+    max-width: 85%; 
+    padding: 14px 16px;
+  }
+  
+  .upload-form {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .composer {
+    padding: 16px 20px;
+    margin: 0 12px;
+  }
+  
+  .prompt-input {
+    min-height: 48px;
+    padding: 14px 16px;
+  }
+  
+  .send-button {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar {
+    padding: 12px 16px;
+  }
+  
+  .brand {
+    font-size: 18px;
+  }
+  
+  .brand .author {
+    font-size: 12px;
+  }
+  
+  .actions button {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+  
+  .upload-section {
+    padding: 16px;
+    margin: 0 8px;
+  }
+  
+  .chat {
+    padding: 16px 12px;
+    margin: 0 8px;
+  }
+  
+  .composer {
+    padding: 12px 16px;
+    margin: 0 8px;
+  }
+}

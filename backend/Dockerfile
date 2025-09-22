@@ -1,0 +1,23 @@
+FROM python:3.11-slim
+
+# Install dependencies for psycopg2 and build tools
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    libpq-dev \
+    build-essential \
+ && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Install Python dependencies first (better caching)
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy app code (though in dev you'll mount ./backend:/app)
+COPY app ./app
+
+# Expose FastAPI port
+EXPOSE 8000
+
+# Default command (compose overrides with --reload for dev)
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
