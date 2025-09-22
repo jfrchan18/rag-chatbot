@@ -57,3 +57,6 @@ logs/
 *.tmp
 *.temp
 
+# Screenshots (uncomment if you want to ignore them)
+# screenshots/
+

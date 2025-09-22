@@ -11,6 +11,24 @@ A Retrieval-Augmented Generation (RAG) chatbot that allows users to upload PDF d
 - 🐳 **Dockerized**: Complete containerized setup with docker-compose
 - ⚛️ **Modern UI**: Clean, responsive React frontend with component-based architecture
 
+## Screenshots
+
+### Main Interface
+![Main Interface](screenshots/main-interface.png)
+*Clean, modern interface with PDF upload and chat functionality*
+
+### PDF Upload
+![PDF Upload](screenshots/pdf-upload.png)
+*Drag-and-drop PDF upload with progress indication*
+
+### Chat Interface
+![Chat Interface](screenshots/chat-interface.png)
+*Interactive chat with message bubbles and typing indicators*
+
+### Mobile Responsive
+![Mobile View](screenshots/mobile-view.png)
+*Fully responsive design that works on all devices*
+
 ## Tech Stack
 
 ### Backend

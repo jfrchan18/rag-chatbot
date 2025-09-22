@@ -447,9 +447,9 @@
         }
 
         const data = await res.json();
-        uploadStatus.textContent = `✅ Uploaded "${data.doc_name}" (doc_id=${data.doc_id}), chunks inserted: ${data.chunks_inserted}`;
+        uploadStatus.textContent = `✅ Uploaded "${data.filename}" (doc_id=${data.doc_id}), chunks created: ${data.chunks_created}`;
         uploadStatus.className = "upload-status success";
-        addBubble(`📄 PDF "${data.doc_name}" ingested! You can now ask about it.`, "bot");
+        addBubble(`📄 PDF "${data.filename}" ingested! You can now ask about it.`, "bot");
         pdfFile.value = "";
       } catch (error) {
         uploadStatus.textContent = `❌ Upload failed: ${error.message}`;

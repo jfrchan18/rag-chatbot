@@ -96,12 +96,12 @@ function App() {
       const data = await res.json();
       setUploadStatus({
         visible: true,
-        message: `✅ Uploaded "${data.doc_name}" (doc_id=${data.doc_id}), chunks inserted: ${data.chunks_inserted}`,
+        message: `✅ Uploaded "${data.filename}" (doc_id=${data.doc_id}), chunks created: ${data.chunks_created}`,
         type: 'success'
       });
 
       // Add success message to chat
-      addMessage(`📄 PDF "${data.doc_name}" ingested! You can now ask about it.`, "bot");
+      addMessage(`📄 PDF "${data.filename}" ingested! You can now ask about it.`, "bot");
     } catch (error) {
       setUploadStatus({
         visible: true,
